@@ -1,9 +1,11 @@
-<?php require_once("config.php") ?>
+<?php require_once("./config.php") ?>
 
 <?php
-
-header("Access-Control-Allow-Origin: *");
-header("Access-Control-Allow-Methods:*");
+error_reporting(E_ALL);
+ini_set('display_error',1);
+header('Access-Control-Allow-Origin:*');
+header('Access-Control-Allow-Headers:*');
+header('Access-Control-Allow-Methods:*');
 $object = new crud;
 $conn = $object->connect();
 
@@ -11,11 +13,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $title = $_POST["title"];
     $auther = $_POST["auther"];
     $description = $_POST["description"];
+    $user_id = $_POST["user_id"];
     $file = $_FILES["file"];
 
     print_r($_POST);
-    print_r($text);
-    print_r($user_id);
     print_r($file);
   
     $targetDir = "../src/images/";
@@ -24,10 +25,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
   
     if (move_uploaded_file($file["tmp_name"], $targetPath)) {
       echo "File uploaded successfully";
-        $sql = "INSERT INTO books (title , auther , description , image	)
-                VALUES ( ? , ? , ? , ?)" ;
+        $sql = "INSERT INTO books (title ,user_id, auther , description , image	)
+                VALUES ( ? , ? , ? , ? , ?)" ;
         $query = $conn->prepare($sql);
-        $query->execute([ $title , $auther , $description ,$fileName]);
+        $query->execute([ $title , $user_id , $auther , $description ,$fileName]);
     } else {
       echo "Error uploading file";
     }
@@ -42,11 +43,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     // print_r($users);
         echo json_encode($users);
   } elseif ($_SERVER["REQUEST_METHOD"] === "DELETE") {
-    $sql = "DELETE FROM groups WHERE group_id = ?" ;
+    $sql = "DELETE FROM books WHERE id = ?" ;
     $path = explode('/' , $_SERVER['REQUEST_URI']);
-    if(isset($path[4]) && is_numeric($path[4])){
+    if(isset($path[4]) && is_numeric($path[5])){
         $query = $conn->prepare($sql);
-        $query->execute([$path[4]]);
+        $query->execute([$path[5]]);
     }
   }
 

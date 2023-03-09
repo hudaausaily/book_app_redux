@@ -8,6 +8,8 @@ import BookList from "./components/BookList/BookList";
 import BookDetails from "./components/BookDetails/BookDetails";
 import Login from './pages/Login/Login';
 import Register from './pages/Register/Register';
+import CreateBook from './components/BookList/CreateBook';
+import EditBook from './components/BookList/editBook';
 
 function App() {
   return (
@@ -17,7 +19,9 @@ function App() {
         <Route path = "/" element = {<Home />}>
           <Route path = "about" element = {<About />} />
           <Route path = "book" element = {<BookList />} />
+          <Route path = "createBook" element = {<CreateBook />} />
           <Route path = "/book/:id" element = {<BookDetails />} />
+          <Route path = "/editBook/:id" element = {<EditBook />} />
         </Route>
         <Route path="/login" element={<Login/>}/>
         <Route path="/register" element={<Register/>}/>

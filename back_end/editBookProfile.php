@@ -17,49 +17,49 @@ $method = $_SERVER['REQUEST_METHOD'];
 
 switch($method){
     case "POST":
-        $name = $_POST["name"];
-        $password = $_POST['password'];
-        $phone = $_POST['phone'];
+        $title = $_POST["title"];
+        $auther = $_POST['auther'];
+        $description = $_POST['description'];
         $path = explode('/' , $_SERVER['REQUEST_URI']);
-        $user_id = $path[4];
+        $book_id = $path[5];
         if($_FILES["file"] == null){
         $file = "";
         } else {
             $file = $_FILES["file"] ;
         }
-        if( ($_POST["name"] == 'undefined') ){
-            $name = "";
+        if( ($_POST["title"] == 'undefined') ){
+            $title = "";
         }
    
-        if($_POST["password"] == 'undefined'){
-            $password = "";
+        if($_POST["auther"] == 'undefined'){
+            $auther = "";
         }
-        if($_POST["phone"] == 'undefined'){
-            $phone = "";
+        if($_POST["description"] == 'undefined'){
+            $description = "";
         }
 
         if($file != ""){
-            $targetDir = "../src/components/image/";
+            $targetDir = "../src/images/";
             $fileName = basename($file["name"]);
             $targetPath = $targetDir . $fileName;
         
             if (move_uploaded_file($file["tmp_name"], $targetPath)) {
             echo "File uploaded successfully";
-                $sql = "UPDATE users SET "; 
-                if($name != ""){$sql .= "name = ? , ";}
-                if($password != ""){$sql .= " password = ? , ";}
-                if($phone != ""){$sql .= " phone = ? , ";}
+                $sql = "UPDATE books SET "; 
+                if($title != ""){$sql .= "title = ? , ";}
+                if($auther != ""){$sql .= " auther = ? , ";}
+                if($description != ""){$sql .= " description = ? , ";}
                 $sql .= " image = ? WHERE id = ? ";
                 $query = $conn->prepare($sql);
-                $userArray = [$name  , $password , $phone];
+                $userArray = [$title  , $auther , $description];
                 $updateArray = [];
-                for($i=0 ; $i<=3 ; $i++){
+                for($i=0 ; $i<=2 ; $i++){
                     if($userArray[$i] != ""){
                         array_push($updateArray ,$userArray[$i]);
                     }
                 }
                 array_push($updateArray ,$fileName);
-                array_push($updateArray ,$user_id);
+                array_push($updateArray ,$book_id);
                 print_r($updateArray);
                 $query->execute([...$updateArray]);
 
@@ -68,24 +68,22 @@ switch($method){
             echo "Error uploading file";
             }
         } else {
-            $sql = "UPDATE users SET"; 
-                if($name != ""){$sql .= " name = ? ,";}
-                if($password != ""){$sql .= " password = ? ,";}
-                if($phone != ""){$sql .= " phone = ?";}  
+            $sql = "UPDATE books SET"; 
+                if($title != ""){$sql .= " title = ? ,";}
+                if($auther != ""){$sql .= " auther = ? ,";}
+                if($description != ""){$sql .= " description = ? ,";}  
                 $sql .= " WHERE id = ? ";
                 $stmt = substr_replace($sql,"",-15 , -14);
                 $query = $conn->prepare($stmt);
-                $userArray = [$name , $password , $phone];
+                $userArray = [$title , $auther , $description];
                 $updateArray = [];
-                for($i=0 ; $i<=3 ; $i++){
+                for($i=0 ; $i<=2 ; $i++){
                     if($userArray[$i] != ""){
                         array_push($updateArray ,$userArray[$i]);
                     }
                 }
-                array_push($updateArray ,$user_id);
+                array_push($updateArray ,$book_id);
                 $query->execute([...$updateArray]);
             break;
         }
 }
-
-?>
