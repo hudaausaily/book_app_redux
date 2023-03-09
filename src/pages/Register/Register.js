@@ -151,7 +151,9 @@ const checkPass=RegExp(/^^[A-Za-z]\w{8,31}$/);
             axios.post("http://localhost:80/REACT_REDUX/book_app_redux/back_end/user.php/save",inputs)
             .then((respone)=>{
                 console.log(respone.data);
-                window.location.assign('/');
+                window.localStorage.setItem('email',this.state.email)
+
+                window.location.assign('/book');
             })
     
   

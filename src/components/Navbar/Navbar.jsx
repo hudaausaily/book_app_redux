@@ -10,7 +10,7 @@ const Navbar = () => {
 
   const handleLogOut = () => {
     window.localStorage.removeItem('email');
-    window.location.pathname = "/";
+    window.location.pathname = "/book";
 
   }
   return (
@@ -47,10 +47,10 @@ const Navbar = () => {
             :
             <>
             <li className='nav-item'>
-              <Link to = "/account" className='nav-link text-uppercase text-white fs-22 fw-6 ls-1'>Logout</Link>
+              <Link to = "/account" className='nav-link text-uppercase text-white fs-22 fw-6 ls-1'>Account</Link>
             </li>
             <li className='nav-item'>
-              <Link  onClick={handleLogOut} className='nav-link text-uppercase text-white fs-22 fw-6 ls-1'>Account</Link>
+              <Link  onClick={handleLogOut} className='nav-link text-uppercase text-white fs-22 fw-6 ls-1'>Logout</Link>
             </li>
             </>
 }
