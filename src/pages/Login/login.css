@@ -1,0 +1,54 @@
+.header-content{
+    min-height: 75vh;
+    background: linear-gradient(rgba(141, 39, 174, 0.3), rgba(141, 39, 174, 0.5)), url("../../images/library-img.jpg") center/cover no-repeat;
+    flex-direction: column;
+}
+.header-title{
+    font-size: 4.2rem;
+}
+.header-text{
+    margin-top: -1.8rem;
+    margin-bottom: 2.8rem;
+    opacity: 0.8;
+    max-width: 770px;
+}
+
+.account-block {
+    padding: 0;
+    background-image: url(https://images.unsplash.com/photo-1578511161102-485cc0775c6b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8Ym9va3N0b3JlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+    position: relative;
+  }
+  .account-block .overlay {
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+  .account-block .account-testimonial {
+    text-align: center;
+    color: #fff;
+    position: absolute;
+    margin: 0 auto;
+    padding: 0 1.75rem;
+    bottom: 17rem;
+    left: 0;
+    right: 0;
+  }
+  
+  .text-theme {
+    color: #5369f8 !important;
+  }
+  
+  .btn-theme {
+    background-color: #5369f8 !important;
+    border-color: #5369f8 !important;
+    color: #fff !important;
+  }
