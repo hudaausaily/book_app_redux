@@ -28,11 +28,11 @@ switch($method){
         $path = explode('/',$_SERVER['REQUEST_URI']);
         
         // print_r($path);break;
-        if(isset($path[5])&&is_numeric($path[5])){
+        if(isset($path[6])&&is_numeric($path[6])){
 
             $sql .= "   WHERE id = :id";
             $stmt =$conn->prepare($sql);
-            $stmt->bindParam(':id', $path[5]);
+            $stmt->bindParam(':id', $path[6]);
 
             $stmt->execute();
             $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -99,7 +99,7 @@ switch($method){
             $sql = "DELETE  FROM users WHERE id = :id";
             $path = explode('/',$_SERVER['REQUEST_URI']);
             $stmt =$conn->prepare($sql);
-            $stmt->bindParam(':id', $path[5]);
+            $stmt->bindParam(':id', $path[6]);
             $stmt->execute();
 
             // print_r($path);

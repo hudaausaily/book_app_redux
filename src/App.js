@@ -10,6 +10,8 @@ import Login from './pages/Login/Login';
 import Register from './pages/Register/Register';
 import CreateBook from './components/BookList/CreateBook';
 import EditBook from './components/BookList/editBook';
+import Profile from './pages/Profile/Profile';
+import EditProfile from './pages/Profile/EditProfile';
 
 function App() {
   return (
@@ -25,6 +27,9 @@ function App() {
         </Route>
         <Route path="/login" element={<Login/>}/>
         <Route path="/register" element={<Register/>}/>
+        <Route path="/account" element={<Profile/>}/>
+        <Route path='/profile/:id/edit' element={<EditProfile/>}/>
+
         
       </Routes>
   
