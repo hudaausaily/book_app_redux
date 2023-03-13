@@ -2,21 +2,40 @@ import React, { useEffect, useState } from 'react';
 import './profile.css';
 import Navbar from "../../components/Navbar/Navbar";
 import axios from 'axios';
+import { Link, useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 
 export default function Profile() {
 
+  const navigate = useNavigate();
+
     // const current_ID = JSON.parse(localStorage.getItem('id'));
-    const current_ID = 1;
+    
     // const user_email = localStorage.getItem('email');
 
     const [dataUsers,setDataUsers] = useState([]);
 
-    useEffect(()=>{
-        getDataUsers();
-       
-    },[]);
+    const admin=useSelector(state=>state.login.admin);
+    const current_ID = admin;
 
+
+  
+
+    useEffect(()=>{
+      getDataUsers();
+      checkLogin();
+
+      
+    },[]);
+    
+    const checkLogin = () =>{
+      if (admin === ''){
+  
+        navigate('/login')
+  
+      }
+    }
       // لعرض  بيانات المستخدم في الموقع
   const getDataUsers = () => {
 
@@ -70,7 +89,7 @@ return <div key={index}>
           </div>
           <div className="social_media">
             <ul>
-              <li><a href={`/profile/${users.id}/edit`}><i className="fab fa-facebook-f" />edit</a></li>
+              <li><Link to={`/profile/${users.id}/edit`}><i className="fab fa-facebook-f" />edit</Link></li>
               {/* <li><a href="#f"><i className="fab fa-twitter" /></a></li>
               <li><a href="#f"><i className="fab fa-instagram" /></a></li> */}
             </ul>

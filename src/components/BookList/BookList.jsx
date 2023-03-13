@@ -20,17 +20,17 @@ const BookList = () => {
 
   useEffect(()=>{
     getBooks();
-console.log(admin);
-          },[])
+    console.log(admin);
+        },[])
 
-          const getBooks =()=>{
-        
-            axios.get("http://localhost/REACT_REDUX/book_app_redux/back_end/books.php")
-          
-            .then((res)=>{
-                console.log(res.data)
-                setBooks(res.data)
-            })
+      const getBooks =()=>{
+    
+        axios.get("http://localhost/REACT_REDUX/book_app_redux/back_end/books.php")
+      
+        .then((res)=>{
+            console.log(res.data)
+            setBooks(res.data)
+        })
        } 
 
   // const booksWithCovers = books.map((singleBook) => {
@@ -55,7 +55,7 @@ console.log(admin);
 
 
 
-              {admin === '' ?
+              {admin !== '' ?
 
                   <Link to="/createBook">
                       <button className='btn'>Add book</button>
