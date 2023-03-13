@@ -15,6 +15,7 @@ export default function Profile() {
     // const user_email = localStorage.getItem('email');
 
     const [dataUsers,setDataUsers] = useState([]);
+    const [books, setBooks] = useState([]);
 
     const admin=useSelector(state=>state.login.admin);
     const current_ID = admin;
@@ -25,6 +26,7 @@ export default function Profile() {
     useEffect(()=>{
       getDataUsers();
       checkLogin();
+      getDataBook();
 
       
     },[]);
@@ -44,6 +46,15 @@ export default function Profile() {
       setDataUsers(respone.data)
         console.log(respone.data);
     })
+}
+
+const getDataBook = () => {
+
+  axios.get(`http://localhost:80/REACT_REDUX/book_app_redux/back_end/getBooksByUserId.php/${current_ID}`)
+  .then(response => {
+      console.log(response.data)
+      setBooks(response.data);
+  })
 }
 
   return (
@@ -78,12 +89,21 @@ return <div key={index}>
             <h3>Books</h3>
             <div className="projects_data">
               <div className="data">
-                <h4>Recent</h4>
-                <p>Lorem ipsum dolor sit amet.</p>
+                <h4>Name</h4>
+{books.map((ele)=>{
+  return <>
+      <p>{ele.title}</p>
+  </>
+})}
               </div>
               <div className="data">
-                <h4>Most Viewed</h4>
-                <p>dolor sit amet.</p>
+                <h4>Created at</h4>
+                {books.map((ele)=>{
+  return <>
+      <p>{ele.created_at}</p>
+  </>
+})}
+                {/* <p>dolor sit amet.</p> */}
               </div>
             </div>
           </div>
