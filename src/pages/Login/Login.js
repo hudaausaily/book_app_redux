@@ -18,7 +18,7 @@ export default function Login() {
   const error=useSelector(state=>state.login.error);
 
       if(admin !== ''){
-          window.location.href = "/";
+          window.location.href = "/book";
       }
   
     
@@ -27,7 +27,7 @@ export default function Login() {
 
 const LoginFun=(e)=>{
   e.preventDefault();
-  dispatch(login(email,password))
+  dispatch(login(email,password));
 }
 
   return (
@@ -48,7 +48,7 @@ const LoginFun=(e)=>{
                   id="input"
                   type="password"
                   placeholder="Enter password"
-                  onChange={(e)=>setEmail(e.target.value)}/>
+                  onChange={(e)=>setPassword(e.target.value)}/>
                 <p id="p1" />
               </div>
               <input

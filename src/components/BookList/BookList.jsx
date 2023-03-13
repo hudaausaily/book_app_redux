@@ -6,14 +6,21 @@ import coverImg from "../../images/cover_not_found.jpg";
 import "./BookList.css";
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { useSelector } from 'react-redux';
 
 
 const BookList = () => {
   const[Books,setBooks]=useState([]);
+  const admin=useSelector(state=>state.login.admin);
+
+
+
+
+ 
 
   useEffect(()=>{
     getBooks();
-
+console.log(admin);
           },[])
 
           const getBooks =()=>{
@@ -44,9 +51,19 @@ const BookList = () => {
           
           <div style={{display:'flex',justifyContent:'space-around'}}>
             <h2  style={{marginTop:'-19px'}}>All Books</h2>
-            <Link to="/createBook">
-                <button className='btn'>Add book</button>
-            </Link>
+
+
+
+
+              {admin === '' ?
+
+                  <Link to="/createBook">
+                      <button className='btn'>Add book</button>
+                  </Link> 
+                  : " "
+}
+              
+
           </div>
         </div>
         <div className='booklist-content grid'>
