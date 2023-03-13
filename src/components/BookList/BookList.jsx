@@ -4,7 +4,7 @@ import Book from "../BookList/Book";
 import Loading from "../Loader/Loader";
 import coverImg from "../../images/cover_not_found.jpg";
 import "./BookList.css";
-import { Link } from 'react-router-dom';
+import { Link, useOutletContext } from 'react-router-dom';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
 
@@ -12,6 +12,7 @@ import { useSelector } from 'react-redux';
 const BookList = () => {
   const[Books,setBooks]=useState([]);
   const admin=useSelector(state=>state.login.admin);
+  const [search] = useOutletContext();
 
 
 
@@ -20,8 +21,8 @@ const BookList = () => {
 
   useEffect(()=>{
     getBooks();
-    console.log(admin);
-        },[])
+   
+        },[search])
 
       const getBooks =()=>{
     
@@ -70,7 +71,7 @@ const BookList = () => {
         {(Books == []) ?
                   <></>
                   :
-                  Books.map((book) =>(
+                  Books.filter(b=>b.title.toLowerCase().includes(search)).map((book) =>(
                     <Book   key = {book.id} Books ={book} />
                     ))}
         
