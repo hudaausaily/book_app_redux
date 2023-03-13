@@ -1,6 +1,8 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Img from "../../images/images.jpg";
+
 import "./creatBook.css";
 
 export default function CreateBook() {
@@ -39,10 +41,15 @@ const handleSubmit = async (e) => {
     <>
         
        {/*  */}
+       <div className='container'style={{display: 'flex',
+  padding: '0',
+  margin: '0',
+  justifyContent: 'space-between'}}>
 <div id= "formm">
 
+
 {/*  Button Add to Group */}
-  <h2 style={{color:"white"}}>Create Book</h2>
+  <h2 style={{color:"white"}}>Add Book</h2>
   <br />
 
 
@@ -54,7 +61,7 @@ const handleSubmit = async (e) => {
 
 
      <input  name="title" placeholder="Book Title" type="text" id="text" value={title} onChange={(e) => setTitle(e.target.value)} />
-     <input  name="title" placeholder="Book Auther" type="text" id="text" value={auther} onChange={(e) => setAuther(e.target.value)} />
+     <input  name="title" placeholder="Book Author" type="text" id="text" value={auther} onChange={(e) => setAuther(e.target.value)} />
      <input name="description"  placeholder="Book Description"  type="text" id="text" value={description} onChange={(e) => setDescription(e.target.value)} />
     <input type="file"  name="img" id="file" accept="image/*"  onChange={(e) =>setFile(e.target.files[0])} hidden/>
     <label className="label" htmlFor="file">Choose Photo</label>
@@ -63,10 +70,19 @@ const handleSubmit = async (e) => {
 
     <br/>
 
-    <button className="BtnAdd"> Create Group </button>
+    <button className="BtnAdd"> Add new book </button>
    </form>
  </section>
+
+ 
 </div>
+
+<div className='content' style={{marginLeft:'150px',marginRight:'-200px',marginTop:'60px',width:'40%'}}>
+  <h1 style={{color:'black',textAlign:'center'}}> Why BookHub?</h1>
+  <p  style={{textAlign:'center'}}> BookBub is a free service that helps millions of readers discover books they'll love  while providing publishers and authors with a way to drive sales and find new fans.<br/> BookBub features books ranging from top-tier publishers to critically acclaimed independent authors. Our experts ensure that we're only featuring great deals on quality books you'll love  <br/><br/> </p>
+  <img src={Img}  alt='boookhub' className='img'/>
+     </div>
+ </div>
 
     </>
   )

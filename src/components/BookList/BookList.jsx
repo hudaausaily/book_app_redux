@@ -41,10 +41,11 @@ const BookList = () => {
       <div className='container'>
         <div className='section-title'>
           {/* <h2>{resultTitle}</h2> */}
-          <h2>All Books</h2>
-          <div>
+          
+          <div style={{display:'flex',justifyContent:'space-around'}}>
+            <h2  style={{marginTop:'-19px'}}>All Books</h2>
             <Link to="/createBook">
-                <button >Add book</button>
+                <button className='btn'>Add book</button>
             </Link>
           </div>
         </div>
