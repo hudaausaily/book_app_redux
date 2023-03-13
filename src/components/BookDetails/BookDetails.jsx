@@ -6,11 +6,15 @@ import "./BookDetails.css";
 import {FaArrowLeft} from "react-icons/fa";
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { useSelector } from 'react-redux';
 
 // const URL = "https://openlibrary.org/works/";
 
 const BookDetails = () => {
   const {id} = useParams();
+
+  const admin=useSelector(state=>state.login.admin);
+
   // const [loading, setLoading] = useState(false);
   const [book, setBook] = useState([]);
   const navigate = useNavigate();
@@ -104,6 +108,7 @@ const deleteBook = (id) => {
               <span className='fw-6'>Description: </span>
               <span className='text-italic'>{book?.description}</span>
             </div>
+            {book.user_id === admin ?
             <div className='book-details-item' style={{display:"flex" , gap:"5px"}}>
               <div>
 
@@ -123,6 +128,7 @@ const deleteBook = (id) => {
 
               </div>
             </div>
+            : ""  }
           </div>
         </div>
       </div>

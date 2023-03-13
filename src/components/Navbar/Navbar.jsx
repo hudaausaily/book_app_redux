@@ -3,10 +3,17 @@ import { Link } from 'react-router-dom';
 import "./Navbar.css";
 import logoImg from "../../images/logo.png";
 import {HiOutlineMenuAlt3} from "react-icons/hi";
+import { useDispatch, useSelector } from 'react-redux';
+import { logout } from '../../redux/action';
+
 
 const Navbar = () => {
   const [toggleMenu, setToggleMenu] = useState(false);
   const handleNavbar = () => setToggleMenu(!toggleMenu);
+  const dispatch = useDispatch();
+
+
+  const admin=useSelector(state=>state.login.admin);
 
   const handleLogOut = () => {
     window.localStorage.removeItem('email');
@@ -36,7 +43,8 @@ const Navbar = () => {
             <li className='nav-item'>
               <Link to = "/about" className='nav-link text-uppercase text-white fs-22 fw-6 ls-1'>about</Link>
             </li>
-            { !window.localStorage.getItem('email') ?<>
+            {/* { !window.localStorage.getItem('email') ?<> */}
+            { admin === ''  ?<>
             <li className='nav-item'>
               <Link to = "/login" className='nav-link text-uppercase text-white fs-22 fw-6 ls-1'>Login</Link>
             </li>
@@ -50,7 +58,8 @@ const Navbar = () => {
               <Link to = "/account" className='nav-link text-uppercase text-white fs-22 fw-6 ls-1'>Account</Link>
             </li>
             <li className='nav-item'>
-              <Link  onClick={handleLogOut} className='nav-link text-uppercase text-white fs-22 fw-6 ls-1'>Logout</Link>
+              <Link  onClick={()=>dispatch(logout())}  className='nav-link text-uppercase text-white fs-22 fw-6 ls-1'>Logout</Link>
+              {/* <Link  onClick={handleLogOut} className='nav-link text-uppercase text-white fs-22 fw-6 ls-1'>Logout</Link> */}
             </li>
             </>
 }

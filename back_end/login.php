@@ -1,9 +1,11 @@
+<?php require('./config.php');?>
 <?php
-require "config.php";
 
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods:*");
 
+$object = new crud;
+$conn = $object->connect();
 
     $email =  $_REQUEST['email'];
     $password = $_REQUEST['password'];
@@ -18,6 +20,6 @@ header("Access-Control-Allow-Methods:*");
         die($error->getMessage());
     }
      while ($row = $stmt->fetch()): 
-            echo $row['email'];
+            echo $row['id'];
      endwhile; 
      ?>

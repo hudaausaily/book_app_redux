@@ -1,5 +1,5 @@
 import React , {useState}from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import {useSelector,useDispatch } from 'react-redux';
 import {login} from "../../redux/action/index";
@@ -14,11 +14,13 @@ import "./login.css";
 export default function Login() {
 
   const dispatch=useDispatch();
+  const nanigate = useNavigate();
   const admin=useSelector(state=>state.login.admin);
   const error=useSelector(state=>state.login.error);
 
-      if(admin !== ''){
-          window.location.href = "/";
+      if(admin.length !== 0){
+        console.log(true);
+          nanigate('/book');
       }
   
     
@@ -27,7 +29,7 @@ export default function Login() {
 
 const LoginFun=(e)=>{
   e.preventDefault();
-  dispatch(login(email,password))
+  dispatch(login(email,password));
 }
 
   return (
@@ -48,8 +50,11 @@ const LoginFun=(e)=>{
                   id="input"
                   type="password"
                   placeholder="Enter password"
-                  onChange={(e)=>setEmail(e.target.value)}/>
+                  onChange={(e)=>setPassword(e.target.value)}/>
                 <p id="p1" />
+              </div>
+              <div id='errorr'>
+                  <span>{error}</span>
               </div>
               <input
                 id="inputButtonLogin"
