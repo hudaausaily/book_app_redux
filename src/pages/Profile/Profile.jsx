@@ -70,7 +70,7 @@ return <div key={index}>
           </div>
           <div className="social_media">
             <ul>
-              <li><a href={`/profile/${users.id}/edit`}><i className="fab fa-facebook-f" />edit</a></li>
+              <li><a href={`/profile/${users.id}/edit`}>edit</a></li>
               {/* <li><a href="#f"><i className="fab fa-twitter" /></a></li>
               <li><a href="#f"><i className="fab fa-instagram" /></a></li> */}
             </ul>

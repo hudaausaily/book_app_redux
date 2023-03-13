@@ -6,13 +6,16 @@ import coverImg from "../../images/cover_not_found.jpg";
 import "./BookList.css";
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { useSelector } from 'react-redux';
 
 
 const BookList = () => {
   const[Books,setBooks]=useState([]);
+  const admin=useSelector(state=>state.login.admin);
 
   useEffect(()=>{
     getBooks();
+    console.log(admin);
 
           },[])
 
