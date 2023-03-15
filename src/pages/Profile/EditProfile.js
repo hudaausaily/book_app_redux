@@ -75,7 +75,8 @@ export default function EditProfile() {
       <input  type="password"  placeholder="Email" name="password" defaultValue={user.password} onChange={handleEditUser} />
       <br/>
       <input type="file" style={{border:'none',borderRadius:'0'}}  placeholder="image"   name="file" id="file"onChange={(e) => setFile(e.target.files[0])}/>
-      <button type='submit'>Submit</button>
+      <button type='submit' style={{marginLeft:'138px'}}>Submit</button>
+      <button type='submit' >Cancel</button>
     </form>
    </div>
         

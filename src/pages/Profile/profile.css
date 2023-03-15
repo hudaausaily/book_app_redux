@@ -148,7 +148,7 @@ color: white;
     margin-bottom: 25px;
     width: 90%;
     border-radius: 8px;
-    height: 25px;
+    height: 40px;
     margin-top: 5px;
     border: #5369f8 1px solid;
   }
@@ -158,9 +158,10 @@ color: white;
     font-size: 15px;
     border: none;
     padding: 10px;
-    margin-left: 180px;
+    margin-left: 30px;
     border-radius: 5px;
   }
+  
   .account-block {
     padding: 0;
     background-image: url(https://images.unsplash.com/photo-1578511161102-485cc0775c6b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8Ym9va3N0b3JlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60);
